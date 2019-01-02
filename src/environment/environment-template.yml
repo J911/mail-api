@@ -1,0 +1,8 @@
+app:
+  key: ""
+  server:
+    port: 3000
+
+  gmail:
+    id: ""
+    pw: ""
