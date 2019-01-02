@@ -1,0 +1,9 @@
+{
+    "apps": [
+        {
+        "name": "mail-api",
+        "script": "npm",
+        "args": "start"
+        }
+    ]
+}
