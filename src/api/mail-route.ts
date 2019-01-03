@@ -27,7 +27,7 @@ class MailRoute extends RouterAbstract {
     if (key !== env.app.key) return res.sendStatus(401);
     if (!to) return res.sendStatus(400);
 
-    var mailOption = {
+    const mailOption = {
         // @ts-ignore
         from : env.app.gmail.id,
         to : to,
@@ -36,7 +36,7 @@ class MailRoute extends RouterAbstract {
     };
 
     try {await mailService.sendMail(mailOption) }
-    catch { return res.sendStatus(500) }
+    catch (e) { return res.sendStatus(500) }
 
     return res.sendStatus(200);
   }
