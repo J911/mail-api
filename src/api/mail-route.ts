@@ -21,21 +21,20 @@ class MailRoute extends RouterAbstract {
     const to = req.body.to,
         subject = req.body.subject || '',
         text = req.body.text || '',
-        key = req.body.key;
+        user = req.body.user,
+        pass = req.body.pass,
+        service = req.body.service;
 
-    // @ts-ignore
-    if (key !== env.app.key) return res.sendStatus(401);
-    if (!to) return res.sendStatus(400);
+    if (!to || !user || !pass || !service) return res.sendStatus(400);
 
     const mailOption = {
-        // @ts-ignore
-        from : env.app.gmail.id,
+        from : user,
         to : to,
         subject : subject,
         text : text
     };
 
-    try {await mailService.sendMail(mailOption) }
+    try {await mailService(service, user, pass).sendMail(mailOption) }
     catch (e) { return res.sendStatus(500) }
 
     return res.sendStatus(200);

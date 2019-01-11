@@ -1,14 +1,9 @@
 import * as nodemailer from 'nodemailer'
 import * as env from '../environment/environment-handler'
 
-const transporter = nodemailer.createTransport({
-    service:'gmail',
-    auth: {
-        // @ts-ignore
-        user : env.app.gmail.id,
-        // @ts-ignore
-        pass : env.app.gmail.pw
-    }
+
+const transporter = (service: string, user: string, pass: string) => nodemailer.createTransport({
+    service, auth: { user, pass}
 });
 
 
